@@ -1,0 +1,33 @@
+{
+  "name": "notion_notifier",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "deploy": "mkdir claspDist && cp -r src/server/* claspDist && cp dist/index.html claspDist && cp appsscript.json claspDist && clasp push && rm -rf claspDist"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.10.14",
+    "@mui/material": "^5.10.14",
+    "eslint-config-prettier": "^8.5.0",
+    "gas-client": "^1.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "recharts": "^2.1.16",
+    "vite-plugin-singlefile": "^0.13.1"
+  },
+  "devDependencies": {
+    "@types/google-apps-script": "^1.0.56",
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@vitejs/plugin-react": "^2.2.0",
+    "prettier": "2.8.1",
+    "typescript": "^4.6.4",
+    "vite": "^3.2.3"
+  }
+}
