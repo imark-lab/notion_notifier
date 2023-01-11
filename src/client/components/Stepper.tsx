@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import Modal from './modal';
+import Modal from './elements/modal';
 import { useRef } from 'react';
 import { atom, useAtom } from 'jotai';
 

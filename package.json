@@ -19,8 +19,10 @@
     "jotai": "^1.12.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.6.2",
     "recharts": "^2.1.16",
-    "vite-plugin-singlefile": "^0.13.1"
+    "vite-plugin-singlefile": "^0.13.1",
+    "zustand": "^4.3.1"
   },
   "devDependencies": {
     "@types/google-apps-script": "^1.0.56",
