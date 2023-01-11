@@ -1,41 +1,75 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const onOpen = () => {
-  const menu = SpreadsheetApp.getUi().createMenu("メニュー").addItem("ダイアログ表示", "openDialog");
-  menu.addToUi();
-};
+/** NotionAPIを操作するためのオブジェクトです。 */
+class Notion {
+  database_id: any
+  entry_point: string | null
+  access_token: string | null
+  notion_version: string | null
+  headers: { 'content-type': string; Authorization: string; 'Notion-Version': any }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const openDialog = () => {
-  const html = HtmlService.createHtmlOutputFromFile("index").setWidth(600).setHeight(600);
-  SpreadsheetApp.getUi().showModalDialog(html, "タイトル");
-};
+  constructor(database_id: string) {
+    /**
+     * データベースのID、クラスに渡したIDで初期化されます。
+     * @type {number}
+     */
+    this.database_id = database_id
+    /**
+     * APIのエントリーポイント,スクリプトプロパティを参照します。
+     * @type {string}
+     */
+    this.entry_point = PropertiesService.getScriptProperties().getProperty('ENTRY_POINT')
+    /**
+     * NotionAPIを使用するためのアクセストークン、スクリプトプロパティを参照します。
+     * @type {string}
+     */
+    this.access_token = PropertiesService.getScriptProperties().getProperty('ACCESS_TOKEN')
+    /**
+     * NotionAPIのバージョン、スクリプトプロパティを参照します。
+     * @type {string}
+     */
+    this.notion_version = PropertiesService.getScriptProperties().getProperty('NOTION_VERSION')
+    /**
+     * ヘッダー要素
+     * @type {object}
+     */
+    this.headers = {
+      'content-type': 'application/json; charset=UTF-8',
+      Authorization: 'Bearer ' + this.access_token,
+      'Notion-Version': this.notion_version,
+    }
+  }
 
-interface SheetData {
-  name: string;
-  numOfRows: number;
+  /**
+   * オブジェクトに渡されたデータベースのIDからデータを取得して返します
+   * @return {object} データベースのJSONデータを返します。
+   */
+  getDataBase() {
+    let options: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
+      method: 'get',
+      headers: this.headers,
+    }
+    const data = UrlFetchApp.fetch(`${this.entry_point}/databases/${this.database_id}`, options)
+    return JSON.parse(data as unknown as string)
+  }
+
+  /**
+   * オブジェクトに渡されたデータベースのIDからデータを引数のフィルターを通して取得して返します
+   * @param {object} データベースのフィルターです
+   * @return {object} データベースのJSONデータを返します。
+   * @see https://developers.notion.com/reference/post-database-query-filter
+   */
+  getFilteredDataBase(filter: object) {
+    let options: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
+      method: 'get',
+      headers: this.headers,
+      contentType: 'application/json',
+      payload: filter,
+    }
+    const data = UrlFetchApp.fetch(
+      `${this.entry_point}/databases/${this.database_id}/query`,
+      options
+    )
+    return JSON.parse(data as unknown as string)
+  }
 }
 
-// TODO: テスト用の関数なので、適切なものに変更する
-const getSheetData = (): SheetData => {
-  const sheet = SpreadsheetApp.getActiveSheet();
-  return {
-    name: sheet.getName(),
-    numOfRows: sheet.getMaxRows(),
-  };
-};
-
-// TODO: テスト用の関数なので、適切なものに変更する
-const appendRowsToSheet = (sheetName: string, rowsToAdd: number): void => {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
-  if (!sheet) return;
-  sheet.insertRowsAfter(sheet.getMaxRows(), rowsToAdd);
-  sheet.getRange(1, 1, 5, 5).setValues([
-    [1, 2, 3, 4, 5],
-    [6, 7, 8, 9, 10],
-    [11, 12, 13, 14, 15],
-    [16, 17, 18, 19, 20],
-    [21, 22, 23, 24, 25],
-  ]);
-};
-
-export { getSheetData, appendRowsToSheet };
+export { Notion }

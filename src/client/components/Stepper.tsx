@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Modal from './modal';
 import { useRef } from 'react';
+import { atom, useAtom } from 'jotai';
 
 const UrlForm = () => {
   const urlRef = useRef(null);
@@ -40,6 +41,23 @@ const ChannelForm = () => {
         sx={{ mt: "20px" }}
         autoFocus
         ref={channelRef}
+      />
+    </>
+  )
+}
+
+const FilterForm = () => {
+  const filterRef = useRef(null);
+  return (
+    <>
+      <div>フィルター設定を適用させる場合はフィルターを選択して下さい</div>
+      <TextField
+        required
+        id="usrField"
+        label="通知チャンネル"
+        sx={{ mt: "20px" }}
+        autoFocus
+        ref={filterRef}
       />
     </>
   )
@@ -94,6 +112,10 @@ const steps = [
     description: <MessageForm />,
   },
   {
+    label: 'データベースのフィルター',
+    description: <FilterForm />,
+  },
+  {
     label: '通知チャンネルの設定',
     description: <ChannelForm />,
   },
@@ -117,40 +139,48 @@ export default function VerticalLinearStepper() {
   return (
     <Box sx={{ maxWidth: 400, margin: "auto" }}>
       <Stepper activeStep={activeStep} orientation="vertical">
-        {steps.map((step, index) => (
-          <Step key={step.label}>
-            <StepLabel
-              optional={
-                index === 2 ? (
-                  <Typography variant="caption">Last step</Typography>
-                ) : null
-              }
-            >
-              {step.label}
-            </StepLabel>
-            <StepContent>
-              <Typography>{step.description}</Typography>
-              <Box sx={{ mb: 2 }}>
-                <div>
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    {index === steps.length - 1 ? '確認する' : '確定'}
-                  </Button>
-                  <Button
-                    disabled={index === 0}
-                    onClick={handleBack}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    戻る
-                  </Button>
-                </div>
-              </Box>
-            </StepContent>
-          </Step>
-        ))}
+
+        <Step key={urlform}>
+          <StepLabel
+            optional={
+              <Typography variant="caption">Last step</Typography>
+            }
+          >
+            データベースの選択
+          </StepLabel>
+          <StepContent>
+            <Typography>
+              <div>情報を取得したいNotionのデータベースページのURLを入力して下さい。</div>
+              <TextField
+                required
+                id="urlField"
+                label="NotionのURL"
+                sx={{ mt: "20px" }}
+                autoFocus
+                ref={urlRef}
+              />
+            </Typography>
+            <Box sx={{ mb: 2 }}>
+              <div>
+                <Button
+                  variant="contained"
+                  onClick={handleNext}
+                  sx={{ mt: 1, mr: 1 }}
+                >
+                  {index === steps.length - 1 ? '確認する' : '確定'}
+                </Button>
+                <Button
+                  disabled={index === 0}
+                  onClick={handleBack}
+                  sx={{ mt: 1, mr: 1 }}
+                >
+                  戻る
+                </Button>
+              </div>
+            </Box>
+          </StepContent>
+        </Step>
+
       </Stepper>
       {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
