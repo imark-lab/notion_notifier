@@ -17,6 +17,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from '../elements/listItems';
 
+
 function Copyright(props: any) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -83,10 +84,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const mdTheme = createTheme();
 
 type Props = {
-  children:React.ReactNode
+  children: React.ReactNode
 }
 
-export default function BasicLayout(props:Props) {
+export default function BasicLayout(props: Props) {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -163,7 +164,7 @@ export default function BasicLayout(props:Props) {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4,justifyContent:'center' }}>
+          <Container maxWidth="lg" sx={{ mt: 4, mb: 4, justifyContent: 'center' }}>
             {props.children}
             <Copyright sx={{ pt: 4 }} />
           </Container>

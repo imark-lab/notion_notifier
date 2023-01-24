@@ -72,4 +72,8 @@ class Notion {
   }
 }
 
-export { Notion }
+function notion(database_id: string) {
+  return new Notion(database_id)
+}
+
+export { notion }
