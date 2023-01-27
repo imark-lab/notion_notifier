@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "deploy": "mkdir claspDist && cp -r src/server/* claspDist && cp dist/index.html claspDist && cp appsscript.json claspDist && clasp push && rm -rf claspDist"
+    "deploy": "tsc && vite build && mkdir claspDist && cp -r src/server/* claspDist && cp dist/index.html claspDist && cp appsscript.json claspDist && clasp push && clasp deploy --deploymentId AKfycbw7yzcSdiRPPtC0UfjjVNWh7tu-RmnlTyOWtbR8_OYufgfPanf8S4zU5JjnMnP_P6CJ &&rm -rf claspDist"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -21,7 +21,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.2",
     "recharts": "^2.1.16",
-    "vite-plugin-singlefile": "^0.13.1",
+    "vite-plugin-singlefile": "^0.13.2",
     "zustand": "^4.3.1"
   },
   "devDependencies": {

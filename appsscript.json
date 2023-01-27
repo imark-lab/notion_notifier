@@ -1,8 +1,10 @@
 {
   "timeZone": "Asia/Tokyo",
-  "dependencies": {
+  "dependencies": {},
+  "webapp": {
+    "access": "DOMAIN",
+    "executeAs": "USER_DEPLOYING"
   },
   "exceptionLogging": "STACKDRIVER",
-  "runtimeVersion": "V8",
-    "oauthScopes": ["https://mail.google.com/","https://www.googleapis.com/auth/script.external_request"]
+  "runtimeVersion": "V8"
 }

@@ -1,11 +1,10 @@
 /** NotionAPIを操作するためのオブジェクトです。 */
 class Notion {
-  database_id: any
+  database_id: string
   entry_point: string | null
   access_token: string | null
   notion_version: string | null
   headers: { 'content-type': string; Authorization: string; 'Notion-Version': any }
-
   constructor(database_id: string) {
     /**
      * データベースのID、クラスに渡したIDで初期化されます。

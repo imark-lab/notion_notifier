@@ -1,5 +1,4 @@
 import * as React from 'react';
-import BasicLayout from '../components/layouts/layout';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -51,174 +50,172 @@ export default function Notifier() {
   }
 
   return (
-    <BasicLayout>
-      <Box sx={{ maxWidth: 400, margin: "auto" }}>
-        <Stepper activeStep={activeStep} orientation="vertical">
+    <Box sx={{ maxWidth: 400, margin: "auto" }}>
+      <Stepper activeStep={activeStep} orientation="vertical">
 
-          <Step key="url">
-            <StepLabel
-            >
-              データベースの選択
-            </StepLabel>
-            <StepContent>
-              <Typography>
-                <div>情報を取得したいNotionのデータベースページのURLを入力して下さい。</div>
-                <TextField
-                  required
-                  id="urlField"
-                  label="NotionのURL"
-                  sx={{ mt: "20px" }}
-                  autoFocus
-                  inputRef={urlRef}
-                />
-              </Typography>
-              <Box sx={{ mb: 2 }}>
-                <div>
-                  <Button
-                    variant="contained"
-                    onClick={handleDatabase}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    確定
-                  </Button>
-                </div>
-              </Box>
-            </StepContent>
-          </Step>
+        <Step key="url">
+          <StepLabel
+          >
+            データベースの選択
+          </StepLabel>
+          <StepContent>
+            <Typography>
+              <div>情報を取得したいNotionのデータベースページのURLを入力して下さい。</div>
+              <TextField
+                required
+                id="urlField"
+                label="NotionのURL"
+                sx={{ mt: "20px" }}
+                autoFocus
+                inputRef={urlRef}
+              />
+            </Typography>
+            <Box sx={{ mb: 2 }}>
+              <div>
+                <Button
+                  variant="contained"
+                  onClick={handleDatabase}
+                  sx={{ mt: 1, mr: 1 }}
+                >
+                  確定
+                </Button>
+              </div>
+            </Box>
+          </StepContent>
+        </Step>
 
-          <Step key="channel">
-            <StepLabel
-            >
-              通知先のチャンネルの選択
-            </StepLabel>
-            <StepContent>
-              <Typography>
-                <div>通知先のチャンネルを選択して下さい</div>
-                <TextField
-                  required
-                  id="usrField"
-                  label="通知チャンネル"
-                  sx={{ mt: "20px" }}
-                  autoFocus
-                  ref={channelRef}
-                />
-              </Typography>
-              <Box sx={{ mb: 2 }}>
-                <div>
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    確定
-                  </Button>
-                  <Button
-                    onClick={handleBack}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    戻る
-                  </Button>
-                </div>
-              </Box>
-            </StepContent>
-          </Step>
+        <Step key="channel">
+          <StepLabel
+          >
+            通知先のチャンネルの選択
+          </StepLabel>
+          <StepContent>
+            <Typography>
+              <div>通知先のチャンネルを選択して下さい</div>
+              <TextField
+                required
+                id="usrField"
+                label="通知チャンネル"
+                sx={{ mt: "20px" }}
+                autoFocus
+                ref={channelRef}
+              />
+            </Typography>
+            <Box sx={{ mb: 2 }}>
+              <div>
+                <Button
+                  variant="contained"
+                  onClick={handleNext}
+                  sx={{ mt: 1, mr: 1 }}
+                >
+                  確定
+                </Button>
+                <Button
+                  onClick={handleBack}
+                  sx={{ mt: 1, mr: 1 }}
+                >
+                  戻る
+                </Button>
+              </div>
+            </Box>
+          </StepContent>
+        </Step>
 
-          <Step key="message">
-            <StepLabel
-            >
-              メッセージの作成
-            </StepLabel>
-            <StepContent>
-              <Typography>
-                <div>Slackに通知する際のメッセージを入力して下さい</div>
-                <TextField
-                  required
-                  id="usrField"
-                  label="通知ユーザー名"
-                  sx={{ mt: "20px" }}
-                  autoFocus
-                  ref={usrRef}
-                />
-                <TextField
-                  id="iconField"
-                  label="アイコン"
-                  sx={{ mt: "20px" }}
-                  autoFocus
-                  ref={iconRef}
-                />
-                <TextField
-                  required
-                  id="msgField"
-                  label="メッセージ"
-                  sx={{ mt: "20px" }}
-                  placeholder="スラックに通知するメッセージ"
-                  multiline
-                  rows={10}
-                  ref={msgRef}
-                />
-              </Typography>
-              <Box sx={{ mb: 2 }}>
-                <div>
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    確定
-                  </Button>
-                  <Button
-                    onClick={handleBack}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    戻る
-                  </Button>
-                </div>
-              </Box>
-            </StepContent>
-          </Step>
+        <Step key="message">
+          <StepLabel
+          >
+            メッセージの作成
+          </StepLabel>
+          <StepContent>
+            <Typography>
+              <div>Slackに通知する際のメッセージを入力して下さい</div>
+              <TextField
+                required
+                id="usrField"
+                label="通知ユーザー名"
+                sx={{ mt: "20px" }}
+                autoFocus
+                ref={usrRef}
+              />
+              <TextField
+                id="iconField"
+                label="アイコン"
+                sx={{ mt: "20px" }}
+                autoFocus
+                ref={iconRef}
+              />
+              <TextField
+                required
+                id="msgField"
+                label="メッセージ"
+                sx={{ mt: "20px" }}
+                placeholder="スラックに通知するメッセージ"
+                multiline
+                rows={10}
+                ref={msgRef}
+              />
+            </Typography>
+            <Box sx={{ mb: 2 }}>
+              <div>
+                <Button
+                  variant="contained"
+                  onClick={handleNext}
+                  sx={{ mt: 1, mr: 1 }}
+                >
+                  確定
+                </Button>
+                <Button
+                  onClick={handleBack}
+                  sx={{ mt: 1, mr: 1 }}
+                >
+                  戻る
+                </Button>
+              </div>
+            </Box>
+          </StepContent>
+        </Step>
 
-          <Step key="filter">
-            <StepLabel
-              optional={
-                <Typography variant="caption">Last step</Typography>
-              }
-            >
-              データベースのフィルター
-            </StepLabel>
-            <StepContent>
-              <Typography>
-                <div>フィルター設定を適用させる場合はフィルターを選択して下さい</div>
-                <TextField
-                  required
-                  id="usrField"
-                  label="通知チャンネル"
-                  sx={{ mt: "20px" }}
-                  autoFocus
-                  ref={filterRef}
-                />
-              </Typography>
-              <Box sx={{ mb: 2 }}>
-                <div>
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    確定
-                  </Button>
-                  <Button
-                    onClick={handleBack}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    戻る
-                  </Button>
-                </div>
-              </Box>
-            </StepContent>
-          </Step>
+        <Step key="filter">
+          <StepLabel
+            optional={
+              <Typography variant="caption">Last step</Typography>
+            }
+          >
+            データベースのフィルター
+          </StepLabel>
+          <StepContent>
+            <Typography>
+              <div>フィルター設定を適用させる場合はフィルターを選択して下さい</div>
+              <TextField
+                required
+                id="usrField"
+                label="通知チャンネル"
+                sx={{ mt: "20px" }}
+                autoFocus
+                ref={filterRef}
+              />
+            </Typography>
+            <Box sx={{ mb: 2 }}>
+              <div>
+                <Button
+                  variant="contained"
+                  onClick={handleNext}
+                  sx={{ mt: 1, mr: 1 }}
+                >
+                  確定
+                </Button>
+                <Button
+                  onClick={handleBack}
+                  sx={{ mt: 1, mr: 1 }}
+                >
+                  戻る
+                </Button>
+              </div>
+            </Box>
+          </StepContent>
+        </Step>
 
-        </Stepper>
-      </Box>
-    </BasicLayout>
+      </Stepper>
+    </Box>
   );
 }
