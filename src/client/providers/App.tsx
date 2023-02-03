@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-type Props ={
-  children:React.ReactNode
+type Props = {
+  children: React.ReactNode
 }
 
-export default function AppProvider(props:Props) {
+export default function AppProvider(props: Props) {
   return (
     <BrowserRouter>
-    {props.children}
+      {props.children}
     </BrowserRouter>
   );
 }

@@ -994,6 +994,11 @@ gas-client@^1.0.0:
   dependencies:
     uuid "^8.2.0"
 
+gas-react-router@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/gas-react-router/-/gas-react-router-0.1.1.tgz#a816a53df0c3d9ef0196a4ca04585596bc1d2a76"
+  integrity sha512-Ls1RRkAoZUSJGcyfYTZWwRiuW6GzqbFGBsY9yAZ2qtMkN/tF+Tz4yH3wHhA0WqV5w41EJ6RxqEpw5d5VvcF7yA==
+
 gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
