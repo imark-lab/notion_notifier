@@ -10,8 +10,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import BasicModal from '../components/elements/modal';
 import { useRef } from 'react';
-import { GASClient } from 'gas-client';
-import { notion } from '../utils/Notion';
+import { serverFunctions } from '../utils/functions';
 
 export default function Notifier() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -34,12 +33,25 @@ export default function Notifier() {
     setActiveStep(0);
   };
 
+  const parseURL = (url: string) => {
+    const regex = /^https:\/\/www.notion.so\/mw-dm\/[\d|a-zA-Z]+?\?v=[\d|a-zA-Z]+?$/;
+    const matches = url.match(regex);
+    return matches ? matches[0] : null;
+  }
+
   const handleDatabase = async () => {
     if (urlRef.current != null) {
       if (urlRef.current.value != null) {
-        const notion_data = notion(urlRef.current.value);
-        console.log(await notion_data.getDataBase());
-        handleNext();
+        const db_id = parseURL(urlRef.current.value);
+        if (db_id) {
+          const notion_data = await serverFunctions.notion(db_id);
+          console.log(notion_data);
+          console.log(notion_data.getDataBase());
+          handleNext();
+        } else {
+          urlRef.current.setAttribute("error", "true");
+          urlRef.current.setAttribute("helperText", "正しいURLを入力してください");
+        }
       } else {
         urlRef.current.setAttribute("error", "true");
         urlRef.current.setAttribute("helperText", "URLを入力してください");
